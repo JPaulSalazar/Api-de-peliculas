@@ -10,8 +10,8 @@ function addMovie(movie) {
     movieList.appendChild(listItem);
     /* nuevo contenido añadido al DOM */
     fetch(`http://www.omdbapi.com/?apikey=84d40acf&i=${movie[i].imdbID}`)
-    .then((response) => response.json())
-    .then((data) => {
+      .then((response) => response.json())
+      .then((data) => {
         const content = `
         <h2>${movie[i].Title}</h2>
         <div class="img">
@@ -31,14 +31,14 @@ function addMovie(movie) {
         /* acordeon */
         listItem.innerHTML = content;
         const acordeon = document.querySelectorAll('.acordeon');
-        acordeon[i].addEventListener('click', (event)=>{
+        acordeon[i].addEventListener('click', (event) => {
           event.preventDefault();
           const elemento = event.currentTarget;
-          let info = elemento.nextElementSibling;
-          if (info.style.display == "block") {
-            info.style.display = "none";
+          const info = elemento.nextElementSibling;
+          if (info.style.display === 'block') {
+            info.style.display = 'none';
           } else {
-            info.style.display = "block";
+            info.style.display = 'block';
           }
         });
       });
