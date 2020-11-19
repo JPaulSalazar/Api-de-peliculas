@@ -18,7 +18,7 @@ function addMovie(movie) {
           <img src="${movie[i].Poster}" alt="${movie[i].Title}">
         </div>
         <div class="div-accordeon">
-            <button class="acordeon">SHOW MORE</button>
+            <button class="acordeon" id="${movie[i].imdbID}">SHOW MORE</button>
             <div class="info">
                 <p>Actors:${data.Actors}</p>
                 <p>Runtime:${data.Runtime}</p>
@@ -30,8 +30,8 @@ function addMovie(movie) {
         `;
         /* acordeon */
         listItem.innerHTML = content;
-        const acordeon = document.querySelectorAll('.acordeon');
-        acordeon[i].addEventListener('click', (event) => {
+        const acordeon = document.getElementById(`${movie[i].imdbID}`);
+        acordeon.addEventListener('click', (event) => {
           event.preventDefault();
           const elemento = event.currentTarget;
           const info = elemento.nextElementSibling;
