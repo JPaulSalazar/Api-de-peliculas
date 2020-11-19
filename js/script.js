@@ -45,20 +45,6 @@ function addMovie(movie) {
   }
 }
 
-/* funcion para cargar mas */
-const buttonMore = document.getElementById('more');
-function more(a) {
-  let index = 1;
-  buttonMore.addEventListener('click', () => {
-    index += 1;
-    fetch(`http://www.omdbapi.com/?apikey=84d40acf&s=${a}/&page=${index}`)
-      .then((response) => response.json())
-      .then((data) => {
-        addMovie(data.Search);
-      });
-  });
-}
-
 /* funcion para jalar la informacion de la api */
 const input = document.getElementById('form');
 input.addEventListener('submit', (event) => {
@@ -68,6 +54,18 @@ input.addEventListener('submit', (event) => {
     .then((response) => response.json())
     .then((data) => {
       addMovie(data.Search);
-      more(inputValue);
+    });
+});
+
+/* funcion para cargar mas */
+const buttonMore = document.getElementById('more');
+let index = 1;
+buttonMore.addEventListener('click', () => {
+  index += 1;
+  const inputValue = input.elements[0].value;
+  fetch(`http://www.omdbapi.com/?apikey=84d40acf&s=${inputValue}/&page=${index}`)
+    .then((response) => response.json())
+    .then((data) => {
+      addMovie(data.Search);
     });
 });
